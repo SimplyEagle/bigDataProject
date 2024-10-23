@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\musicoset_popularity\album_chart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\musicoset_popularity\album_pop.csv">
           <value>
             <Attribute>

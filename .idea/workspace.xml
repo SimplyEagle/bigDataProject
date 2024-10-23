@@ -5,10 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a7b7123-eda8-4a57-a2cb-929ddc5b9c94" name="Changes" comment="unzip for data">
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/ReadMe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/albums.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/artists.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/releases.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/songs.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_metadata/tracks.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/ReadMe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/album_chart.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/album_pop.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/artist_chart.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/artist_pop.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/song_chart.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_popularity/song_pop.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_songfeatures/ReadMe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_songfeatures/acoustic_features.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musicoset_songfeatures/lyrics.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/api key.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,35 +41,35 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "SimplyEagle"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SimplyEagle&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/SimplyEagle/bigDataProject.git",
-    "accountId": "074dbfa4-e284-4a30-8ff8-018de4aef2ed"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SimplyEagle/bigDataProject.git&quot;,
+    &quot;accountId&quot;: &quot;074dbfa4-e284-4a30-8ff8-018de4aef2ed&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2noKiKwqOYPan8wLt63K4qU1U15" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "v1"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;init&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\baile\PycharmProjects\bigDataProject" />
