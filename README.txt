@@ -11,6 +11,7 @@ Loading Data
 ##############
 .zip files are for the data. They are too big to load into a repo.
 Extract them into the project for it to run.
+To run, pip install streamlit and any other packages you need and enter streamlit run app.py in your favorite command line interface (while in project directory).
 
 Local vs Online
 ################
