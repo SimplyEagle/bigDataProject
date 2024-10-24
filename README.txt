@@ -3,10 +3,6 @@ The Basics
 The MusicoSet dataset is included in the repo. It is a big dataset including a huge list of artist, songs, and albums.
 There are also sets for popularity and song features that aren't utilized in this version.
 
-The dataset is being used as a big dictionary for artist names, album names, and song names. No ML. The input is read
-the code compares it to these big dictionaries and calls Last.fm API to find similar songs. That's the part that needs
-to phase out. Our model will replace the API call. But it works technically.
-
 Loading Data
 ##############
 .zip files are for the data. They are too big to load into a repo.
