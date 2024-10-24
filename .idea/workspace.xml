@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a7b7123-eda8-4a57-a2cb-929ddc5b9c94" name="Changes" comment="update readme and a few changes">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api key.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="init" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
@@ -52,7 +55,7 @@
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "init"
+    "git-widget-placeholder": "v2"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -108,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729647101611</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ml version. problem with data formatting. im using \t as the delimiter (because of the jank format) but that's causing extra problems in certain lines.">
+      <option name="closed" value="true" />
+      <created>1729728658788</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729728658788</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +137,18 @@
     <MESSAGE value="initial" />
     <MESSAGE value="unzip for data" />
     <MESSAGE value="update readme and a few changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme and a few changes" />
+    <MESSAGE value="ml version. problem with data formatting. im using \t as the delimiter (because of the jank format) but that's causing extra problems in certain lines." />
+    <option name="LAST_COMMIT_MESSAGE" value="ml version. problem with data formatting. im using \t as the delimiter (because of the jank format) but that's causing extra problems in certain lines." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

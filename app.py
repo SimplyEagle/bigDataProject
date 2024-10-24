@@ -7,8 +7,8 @@ from sklearn.neighbors import NearestNeighbors
 def load_data(file_paths):
     try:
         # Load songs and features CSVs
-        songs = pd.read_csv(file_paths["songs"], on_bad_lines='warn')
-        features = pd.read_csv(file_paths["acoustic_features"], on_bad_lines='warn')
+        songs = pd.read_csv(file_paths["songs"], on_bad_lines='warn', delimiter='\t')
+        features = pd.read_csv(file_paths["acoustic_features"], on_bad_lines='warn', delimiter='\t')
 
         print("Songs DataFrame:", songs.head())  # Debugging step
         print("Features DataFrame:", features.head())  # Debugging step
@@ -20,7 +20,7 @@ def load_data(file_paths):
         )
 
         # Merge songs with acoustic features on song ID or relevant key
-        merged_data = pd.merge(songs, features, on="id", how="inner")  # Adjust 'id' if needed
+        merged_data = pd.merge(songs, features, on="song_id", how="inner")
 
         return {"songs": merged_data}
 
