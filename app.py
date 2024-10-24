@@ -1,117 +1,105 @@
-import streamlit as st
-import requests
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import NearestNeighbors
 
-# Function to load a single CSV file
-def load_single_file(file_path):
-    return pd.read_csv(file_path, delimiter='\t')
 
-# Function to load data
-@st.cache_data
+# Load both datasets
 def load_data(file_paths):
-    data_frames = {key: load_single_file(path) for key, path in file_paths.items()}
-    return data_frames
-
-# Last.fm API setup -TEMP Our model needs to replace this.
-API_KEY = "e94245c03989b6fa22ae4cefb8de9dd0"
-BASE_URL = "http://ws.audioscrobbler.com/2.0/"
-HEADERS = {
-    "User-Agent": "MusicRecommendationApp/1.0 (baileymsweeney@gmail.com)"
-}
-
-# Function to make Last.fm API requests -TEMP Our model needs to replace this.
-def last_fm_request(method, params):
-    params["api_key"] = API_KEY
-    params["format"] = "json"
-    url = BASE_URL + f"?method={method}"
-    for key, value in params.items():
-        url += f"&{key}={requests.utils.quote(value)}"
-    print(f"Request URL: {url}")  # Debug statement
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        st.error(f"API call failed: {e}")
-        return None
+        # Load songs and features CSVs
+        songs = pd.read_csv(file_paths["songs"], on_bad_lines='warn')
+        features = pd.read_csv(file_paths["acoustic_features"], on_bad_lines='warn')
 
-# Functions for fetching similar artists, album info, and similar tracks
-def get_similar_artists(artist):
-    print(f"Fetching similar artists for: {artist}")
-    result = last_fm_request("artist.getSimilar", {"artist": artist}) # TEMP - Model does work to find similar artists.
-    print(f"Response Data: {result}")  # Print the full response for inspection
-    return result
+        print("Songs DataFrame:", songs.head())  # Debugging step
+        print("Features DataFrame:", features.head())  # Debugging step
 
-def get_album_info(artist, album):
-    print(f"Fetching album info for: {album} by {artist}")
-    result = last_fm_request("album.getInfo", {"artist": artist, "album": album}) # TEMP - Model does work to find similar album.
-    print(f"Response Data: {result}")  # Print the full response for inspection
-    return result
+        # Parse artist dictionary column in songs.csv
+        songs[["artist_id", "artist_name"]] = pd.DataFrame(
+            [list(entry.items())[0] for entry in songs["artists"].apply(eval)],
+            index=songs.index
+        )
 
-def get_similar_tracks(artist, track):
-    print(f"Fetching similar tracks for: {track} by {artist}")
-    result = last_fm_request("track.getSimilar", {"artist": artist, "track": track}) # TEMP - Model does work to find similar song.
-    print(f"Response Data: {result}")  # Print the full response for inspection
-    return result
+        # Merge songs with acoustic features on song ID or relevant key
+        merged_data = pd.merge(songs, features, on="id", how="inner")  # Adjust 'id' if needed
 
-# Function to get recommendations based on user input
-def get_recommendations(user_input, data):
-    recommendations = []
-    user_input = user_input.lower()
+        return {"songs": merged_data}
 
-    artist_matches = data['artists'][data['artists']['name'].str.lower().str.contains(user_input)]
-    album_matches = data['albums'][data['albums']['name'].str.lower().str.contains(user_input)]
-    song_matches = data['songs'][data['songs']['song_name'].str.lower().str.contains(user_input)]
+    except Exception as e:
+        print(f"Error loading data: {e}")
+        return {}  # Return an empty dictionary in case of an error
 
-    # Check for artist matches
-    if not artist_matches.empty:
-        artist = artist_matches.iloc[0]['name']
-        result = get_similar_artists(artist)
-        if result and 'similarartists' in result:
-            recommendations += [artist["name"] for artist in result["similarartists"]["artist"]]
 
-    # Check for album matches
-    if not album_matches.empty:
-        album = album_matches.iloc[0]
-        artist_name = album['artists']
-        result = get_album_info(artist_name, album['name'])
-        if result and 'tracks' in result['album']:
-            recommendations += [track["name"] for track in result["album"]["tracks"]["track"]]
+# Train KNN model
+def train_knn_model(songs_df):
+    # Define relevant feature columns
+    feature_columns = [
+        'danceability', 'energy', 'loudness', 'speechiness',
+        'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo'
+    ]
 
-    # Check for song matches
-    if not song_matches.empty:
-        song = song_matches.iloc[0]
-        artist_name = song['artists']
-        result = get_similar_tracks(artist_name, song['song_name'])
-        if result and 'similartracks' in result:
-            recommendations += [track["name"] for track in result["similartracks"]["track"]]
+    # Ensure only existing columns are selected
+    existing_columns = [col for col in feature_columns if col in songs_df.columns]
+    if not existing_columns:
+        raise ValueError("No matching feature columns found in the dataset.")
 
-    return recommendations
+    # Scale the features
+    scaler = StandardScaler()
+    X = scaler.fit_transform(songs_df[existing_columns])
 
-# Streamlit UI
-st.title("Real-Time Music Recommendations")
-st.write("Enter an artist, album, or song to get recommendations.")
+    # Train the KNN model
+    knn = NearestNeighbors(n_neighbors=5, metric='euclidean')
+    knn.fit(X)
 
-user_input = st.text_input("What music are you interested in?")
+    return knn, scaler
 
-# Load all data files at the start
-file_paths = {
-    "albums": 'musicoset_metadata/albums.csv',
-    "artists": 'musicoset_metadata/artists.csv',
-    "songs": 'musicoset_metadata/songs.csv',
-    "tracks": 'musicoset_metadata/tracks.csv',
-}
-data = load_data(file_paths)
 
-if st.button("Get Recommendations"):
-    if user_input:
-        recommendations = get_recommendations(user_input, data)
+# Get song recommendations using KNN
+def get_recommendations(song_name, songs_df, knn_model, scaler):
+    feature_columns = [
+        'danceability', 'energy', 'loudness', 'speechiness',
+        'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo'
+    ]
 
-        if recommendations:
-            st.write("Here are your recommendations:")
-            for rec in recommendations:
-                st.write(f"- {rec}")
-        else:
-            st.write("No recommendations found. Try another input.")
+    # Find the matching song's features
+    song = songs_df[songs_df["song_name"].str.contains(song_name, case=False, na=False)]
+    if song.empty:
+        print(f"No song found with name: {song_name}")
+        return []
+
+    # Extract and scale the features of the input song
+    song_features = song[feature_columns]
+    scaled_features = scaler.transform(song_features)
+
+    # Find the nearest neighbors
+    distances, indices = knn_model.kneighbors(scaled_features)
+
+    # Return recommended songs
+    recommendations = songs_df.iloc[indices[0]]
+    return recommendations["song_name"].tolist()
+
+
+# Main Program
+if __name__ == "__main__":
+    # File paths to the datasets
+    file_paths = {
+        "songs": "musicoset_metadata/songs.csv",
+        "acoustic_features": "musicoset_songfeatures/acoustic_features.csv"
+    }
+
+    # Load data
+    data = load_data(file_paths)
+
+    # Check if data was loaded successfully
+    if not data:
+        print("Failed to load data. Exiting program.")
     else:
-        st.write("Please enter some input.")
+        # Train the KNN model
+        knn_model, scaler = train_knn_model(data["songs"])
+
+        # Get user input and recommend songs
+        user_input = input("Enter a song name to get recommendations: ")
+        recommendations = get_recommendations(user_input, data["songs"], knn_model, scaler)
+
+        print("Here are your recommendations:")
+        for rec in recommendations:
+            print(rec)
