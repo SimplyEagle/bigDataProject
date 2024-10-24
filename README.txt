@@ -1,7 +1,6 @@
 The Basics
 ############
 The MusicoSet dataset is included in the repo. It is a big dataset including a huge list of artist, songs, and albums.
-There are also sets for popularity and song features that aren't utilized in this version.
 
 Loading Data
 ##############
