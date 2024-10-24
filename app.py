@@ -2,16 +2,12 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import NearestNeighbors
 
-
 # Load both datasets
 def load_data(file_paths):
     try:
         # Load songs and features CSVs
         songs = pd.read_csv(file_paths["songs"], on_bad_lines='warn', delimiter='\t')
         features = pd.read_csv(file_paths["acoustic_features"], on_bad_lines='warn', delimiter='\t')
-
-        print("Songs DataFrame:", songs.head())  # Debugging step
-        print("Features DataFrame:", features.head())  # Debugging step
 
         # Parse artist dictionary column in songs.csv
         songs[["artist_id", "artist_name"]] = pd.DataFrame(
@@ -20,7 +16,7 @@ def load_data(file_paths):
         )
 
         # Merge songs with acoustic features on song ID or relevant key
-        merged_data = pd.merge(songs, features, on="song_id", how="inner")
+        merged_data = pd.merge(songs, features, on="song_id", how="inner")  # Adjust 'id' if needed
 
         return {"songs": merged_data}
 
@@ -47,7 +43,7 @@ def train_knn_model(songs_df):
     X = scaler.fit_transform(songs_df[existing_columns])
 
     # Train the KNN model
-    knn = NearestNeighbors(n_neighbors=5, metric='euclidean')
+    knn = NearestNeighbors(n_neighbors=6, metric='euclidean')
     knn.fit(X)
 
     return knn, scaler
@@ -73,9 +69,21 @@ def get_recommendations(song_name, songs_df, knn_model, scaler):
     # Find the nearest neighbors
     distances, indices = knn_model.kneighbors(scaled_features)
 
-    # Return recommended songs
+    # Prepare recommendations and their statistics
     recommendations = songs_df.iloc[indices[0]]
-    return recommendations["song_name"].tolist()
+    recommendation_stats = []
+    for i, idx in enumerate(indices[0]):
+        if distances[0][i] > 0:
+            song_info = recommendations.iloc[i]
+            stats = {
+                "song_name": song_info["song_name"],
+                "artist_name": song_info["artist_name"],
+                "distance": distances[0][i],
+                "features": {col: song_info[col] for col in feature_columns},
+            }
+            recommendation_stats.append(stats)
+
+    return recommendation_stats
 
 
 # Main Program
@@ -102,4 +110,4 @@ if __name__ == "__main__":
 
         print("Here are your recommendations:")
         for rec in recommendations:
-            print(rec)
+            print(f"Song: {rec['song_name']}, Artist: {rec['artist_name']} Distance: {rec['distance']:.4f}")

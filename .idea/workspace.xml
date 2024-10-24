@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a7b7123-eda8-4a57-a2cb-929ddc5b9c94" name="Changes" comment="update readme and a few changes">
+    <list default="true" id="7a7b7123-eda8-4a57-a2cb-929ddc5b9c94" name="Changes" comment="working very basically">
+      <change afterPath="$PROJECT_DIR$/streamlit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
@@ -23,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="init" />
+        <entry key="$PROJECT_DIR$" value="v2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,12 +54,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.app.executor": "Run",
+    "Python.streamlit.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "v2"
+    "git-widget-placeholder": "v3",
+    "last_opened_file_path": "C:/Users/baile/PycharmProjects/bigDataProject"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\baile\PycharmProjects\bigDataProject" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\baile\PycharmProjects\bigDataProject" />
     </key>
@@ -119,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729728658788</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="working very basically">
+      <option name="closed" value="true" />
+      <created>1729732261695</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729732261695</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,17 +152,7 @@
     <MESSAGE value="unzip for data" />
     <MESSAGE value="update readme and a few changes" />
     <MESSAGE value="ml version. problem with data formatting. im using \t as the delimiter (because of the jank format) but that's causing extra problems in certain lines." />
-    <option name="LAST_COMMIT_MESSAGE" value="ml version. problem with data formatting. im using \t as the delimiter (because of the jank format) but that's causing extra problems in certain lines." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="working very basically" />
+    <option name="LAST_COMMIT_MESSAGE" value="working very basically" />
   </component>
 </project>
